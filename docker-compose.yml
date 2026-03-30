@@ -4,7 +4,7 @@ services:
       context: .
       dockerfile: Dockerfile.production
     image: elina003/devops-for-developers-project-74:latest
-    command: sh -c "npm install && make test"
+    command: sh -c "npm install --include=dev && make test"
     environment:
       DATABASE_HOST: db
       DATABASE_NAME: postgres
