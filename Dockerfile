@@ -8,6 +8,4 @@ RUN npm ci --only=production
 
 COPY app/ .
 
-RUN make setup
-
 CMD ["make", "test"]

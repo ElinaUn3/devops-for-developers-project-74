@@ -3,9 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: make dev
+    command: sh -c "make db-migrate && make dev"
     ports:
-      - "8080:8080"     # опционально, для прямого доступа к приложению
+      - "8080:8080"     
     volumes:
       - ./app:/app
 

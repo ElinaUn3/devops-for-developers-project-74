@@ -11,11 +11,22 @@ services:
       DATABASE_PASSWORD: password
       DATABASE_PORT: 5432
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
-    image: postgres:13
+    image: postgres:latest
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: postgres
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+  pgdata:
