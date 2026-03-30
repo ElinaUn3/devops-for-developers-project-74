@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [ main, master ]   # измените, если ваша основная ветка называется иначе
+    branches: [ main, master ]   
 
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
 
       - name: Run tests with Docker Compose
         run: |
-          docker-compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
+          docker compose -f docker-compose.yml up --abort-on-container-exit --exit-code-from app
 
   build-and-push:
     needs: test
